@@ -1,3 +1,4 @@
+import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
 import {
   LoginLink,
@@ -6,13 +7,18 @@ import {
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex justify-center items-center flex-col">
+    <div>
       <Button>
         <LoginLink>Sign in</LoginLink>
       </Button>
+      <br />
+      <br />
       <Button>
         <RegisterLink>Sign up</RegisterLink>
       </Button>
+      <br />
+      <br />
+      <ModeToggle />
     </div>
   );
 }
