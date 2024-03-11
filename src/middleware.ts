@@ -1,8 +1,9 @@
-import { withAuth } from "@kinde-oss/kinde-auth-nextjs/middleware";
-import { NextRequest } from "next/server";
-export default function middleware(req: NextRequest) {
-  return withAuth(req);
-}
+import { authMiddleware } from "@clerk/nextjs";
+
+export default authMiddleware({
+  //   publicRoutes: ["/"],
+});
+
 export const config = {
-  matcher: ["/dashboard"],
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
