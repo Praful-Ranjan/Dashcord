@@ -1,5 +1,6 @@
 import { db } from "@/lib/db";
 import { InitialProfile } from "@/lib/initial-profile";
+import { UserButton } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 const SetupPage = async () => {
@@ -19,7 +20,11 @@ const SetupPage = async () => {
     return redirect(`/servers/${server.id}`);
   }
 
-  return <div>Create a server</div>;
+  return (
+    <div>
+      <UserButton /> Create a server
+    </div>
+  );
 };
 
 export default SetupPage;
