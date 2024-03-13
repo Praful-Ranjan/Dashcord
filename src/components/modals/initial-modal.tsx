@@ -57,7 +57,7 @@ export const InitialModal = () => {
   if (!isMounted) return null;
 
   return (
-    <Dialog open>
+    <Dialog>
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="text-2xl text-center font-semibold">
