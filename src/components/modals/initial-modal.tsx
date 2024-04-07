@@ -24,6 +24,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
 import { FileUpload } from "../file-upload";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -50,9 +52,16 @@ export const InitialModal = () => {
   });
 
   const isLoading = form.formState.isSubmitting;
+  const router = useRouter();
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    console.log(data);
+    try {
+      await axios.post("/api/servers", data);
+      form.reset();
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   if (!isMounted) return null;
@@ -81,8 +90,8 @@ export const InitialModal = () => {
                       <FormControl>
                         <FileUpload
                           endpoint="serverImage"
-                          value="field.value"
-                          onChange="field.change"
+                          value={field.value}
+                          onChange={field.onChange}
                         />
                       </FormControl>
                     </FormItem>
